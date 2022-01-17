@@ -12,12 +12,12 @@ class OuterClass  {
         this.name = _name
     }
     class NestedClass {
-       var name2: String = "zx"
+       var name2: String = "name of nested class"
     }
     inner class InnerClass {
         var nameInner: String = "inner"
         fun printFromInner(): Triple<Int, Int, Unit> {
-            println("String from inner class is " + name)
+            println("String of outer class from inner class is " + name)
             return Triple(1, 1, Unit)
         }
     }

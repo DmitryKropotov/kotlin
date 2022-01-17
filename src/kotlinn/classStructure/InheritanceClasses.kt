@@ -5,4 +5,8 @@ class BaseClass {
     internal fun printVal() {
         println(str);
     }
+
+    inline fun inlineFunc() {
+        println("inline function package kolinn.classStructure")
+    }
 }

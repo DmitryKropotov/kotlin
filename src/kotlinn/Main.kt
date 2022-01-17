@@ -25,34 +25,75 @@ fun main() {
     println(range.step)
     val f = range.filter {T -> T%2 == 0 }
     println(f)
+    println("end sequences")
     println()
+
     println(higherOrderFunc(122, 88, ::sum))
     println()
+
     val lambdaFunc = {str: String -> str.toUpperCase()}
     println(lambdaFunc.invoke("hello"))
+    println("lambda function")
     println()
-    inlineFunc { println("This is inline") }
+
+    inlineFunc { println("This is inline function") }
+    var class2 = Class2();
+    class2.inlineFunc();
+    var baseClass = BaseClass()
+    baseClass.inlineFunc()
     println()
+
     var outerClass = OuterClass("unnatural name")
     println(outerClass.name)
     var nestedClass/*: kotlin.OuterClass.NestedClass*/ = OuterClass.NestedClass()
     println(nestedClass.name2)
     var innerClass/*: kotlin.OuterClass.InnerClass*/ = outerClass.InnerClass()
     var result: Triple<Int, Int, Unit> = innerClass.printFromInner();
-    println(result)
+    println("result of triple from inner class " + result)
+    println("outer, nested and inner classes")
     println()
-    var baseClass = BaseClass()
+
     baseClass.printVal()
+    println("internal variable")
     println()
+
     var sealedClass = SealedClass.OP1()
     println(sealedClass.str)
+    println("sealed class")
     println()
+
     var b = BaseImpl(10)
     Derived(b).printMe()
+    println("derived class")
     println()
+
     var user = User()
     user.name = "first"
     user.name = "second"
+    println("observable function")
+    println()
+
+    val myVar: String by lazy {
+        "Hello"
+    }
+    println(myVar +" My dear friend")
+    println("lazy function")
+    println()
+
+    val man = returnDestructuringDeclaration()
+    println(man)
+    println()
+
+    try {
+        val myVar:Int = 12;
+        val v:String = "Tutorialspoint.com";
+        //v.toInt();
+    } catch(e:Exception) {
+        e.printStackTrace();
+    } finally {
+        println("Exception Handling in Kotlin");
+    }
+
 }
 
 fun sum(a: Int, b: Int): Int {
@@ -60,6 +101,7 @@ fun sum(a: Int, b: Int): Int {
 }
 
 fun higherOrderFunc(a: Int, b: Int, operation:(Int, Int)-> Int): Int {
+    println("higher order function")
     return sum(a, b)
 }
 
@@ -67,10 +109,25 @@ inline fun inlineFunc(linkFunction:(a: Int)-> Unit) {
     linkFunction(3)
 }
 
-sealed class SealedClass {
-    var str = "sealed class"
-    class OP1 : SealedClass()
-    class OP2 : SealedClass()
+fun returnDestructuringDeclaration(): Person {
+    val person = Person("John", 18, "student")
+    return person
+}
+
+data class Person(val name_: String, val age_: Int, val profession_: String) {
+    var name = name_
+    var age = age_
+    var profession = profession_
+}
+
+sealed class SealedClass(_num: Int) {
+    private var num: Int;
+    init {
+        this.num = _num
+    }
+    var str = "sealed class $num"
+    class OP1 : SealedClass(1)
+    class OP2 : SealedClass(2)
 }
 
 interface Base {
