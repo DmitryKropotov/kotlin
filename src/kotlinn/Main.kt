@@ -1,6 +1,7 @@
 package kotlinn
 
 import kotlinn.classStructure.*
+import ru.project.entity.Car
 import kotlin.properties.Delegates
 
 fun main() {
@@ -93,6 +94,12 @@ fun main() {
     } finally {
         println("Exception Handling in Kotlin");
     }
+    println()
+
+    var car = Car("blue", "bmw")
+    println(car)
+    println("java object in kotlin")
+
 
 }
 
