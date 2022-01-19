@@ -1,0 +1,1 @@
+document.getElementById("demo").innerHTML = "not hard coded script";
