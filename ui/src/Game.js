@@ -13,10 +13,23 @@ class Square extends React.Component {
         return (
             <button
                 className="square"
-                onClick={() => {
+                onClick={async () => {
                     console.log('click')
-                    debugger
                     this.setState({value: 'X'})
+                    var response;
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "http://localhost:8080/printMessage")
+                    xhttp.responseType = 'text';
+                    xhttp.onload = function() {
+                        response = xhttp.response
+                        debugger
+                        console.log('onload function ' + xhttp.response)
+                    }
+                    xhttp.send()
+                    //const fetchResponse = await fetch('http://localhost:8080/printMessage', { mode: "no-cors"} )
+                    debugger
+                    console.log(response)
+                    //console.log(fetchResponse)
                 }}
             >
                 {this.state.value}
