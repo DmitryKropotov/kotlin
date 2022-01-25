@@ -5,9 +5,13 @@ import javax.persistence.Id
 
 @Entity
 data class Student(@Id var id: Int, var name: String) {
-    /*@Id
-    var id: Int
-    var name: String*/
+
+    constructor() : this(0, "default") {
+        println("no parameters constructor")
+    }
+
+
+
 
     fun getId_(): Int {
         return id;
